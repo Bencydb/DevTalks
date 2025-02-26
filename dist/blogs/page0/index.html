@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blogs/page0">Blogs</a></li>
+                <li><a href="/news">News</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+        <video class="bg-video" autoplay muted loop>
+            <source src="../../assets/images/bgvideo.mp4" type="video/mp4">
+        </video>
+    <main>
+     
+
+
+<!-- Search Form -->
+<form id="searchForm">
+  <input type="text" id="searchInput" placeholder="Search..." />
+  <button type="submit">Search</button>
+</form>
+<br/>
+
+<!-- Category Filter -->
+<label for="category">Filter by category:</label>
+<select id="category" onchange="filterByCategory()">
+    <option value="all">All Categories</option>
+    <option value="Web Development">Web Development</option>
+    <option value="Development">Development</option>
+    <option value="Mobile Development">Mobile Development</option>
+</select>
+
+<h1>Blogs</h1>
+<ul id="devtalk-list">
+  
+    <li class="devtalk-item" data-category="Mobile Development">
+      <h2>Embracing the Future of Design: Figma AI Revolutionizes UI/UX Workflows</h2>
+      <p>This article explores the transformative impact of Figma AI on the design landscape, highlighting its integration of artificial intelligence within the Figma platform. By introducing innovative features that enhance creativity, streamline processes, and foster collaboration, Figma AI empowers designers to unlock new possibilities in UI/UX design. From generating unique illustrations to automating mundane tasks, Figma AI paves the way for a future where human creativity and AI work hand in hand to create exceptional user experiences.</p>
+      <a href="/article5">View Project</a>
+      <p>Mobile Development</p>
+    </li>
+  
+    <li class="devtalk-item" data-category="Mobile Development">
+      <h2>Unlocking the Future of Mobile Development with Flutter</h2>
+      <p>This article delves into the future of Flutter development, emphasizing its increasing relevance in the mobile app landscape. Established in 2017, Flutter offers a powerful open-source framework that allows developers to create high-performance applications from a single codebase, significantly reducing development time and costs. With notable apps like Alibaba and Google Ads leveraging its capabilities, Flutter’s extensive library of customizable widgets and features such as Hot Reload and automated testing enhance productivity and user experience. As demand for cross-platform solutions grows and the Dart programming language gains popularity, Flutter is poised to revolutionize mobile app development, making it a compelling choice for businesses looking to innovate and reach wider audiences.</p>
+      <a href="/article4">View Project</a>
+      <p>Mobile Development</p>
+    </li>
+  
+    <li class="devtalk-item" data-category="Development">
+      <h2>Is Django Still Relevant in 2024?</h2>
+      <p>As we progress into 2024, Django, the Python-based web framework, remains a robust and adaptable tool for modern web development. Despite critiques about its asynchronous support and static typing, Django has evolved to meet the needs of today&#39;s developers, with significant advancements such as async ORM and middleware. Its &quot;batteries-included&quot; philosophy, backward compatibility, scalability, and active community ensure that Django continues to thrive in the competitive landscape. While no framework is perfect, Django&#39;s strengths and ongoing modernization efforts affirm its relevance and utility in building high-performance web applications today.</p>
+      <a href="/article3">View Project</a>
+      <p>Development</p>
+    </li>
+  
+</ul>
+
+<nav>
+  <ul class="pagination">
+
+      
+        <li class="page-item active">
+          <a class="page-link" href="/blogs/page0/">
+            1
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="/blogs/page1/">
+            2
+          </a>
+        </li>
+
+      
+        <li class="page-item">
+          <a class="page-link" href="/blogs/page1/" aria-label="Next">
+            Next
+          </a>
+        </li>
+      
+
+  </ul>
+</nav>
+
+<script src="/assets/js/search.js"></script>
+    </main>
+
+
+
+    <footer>
+        <p>&copy;  DevTalks</p>
+    </footer>
+</body>
+</html>
+

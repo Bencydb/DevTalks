@@ -1,0 +1,71 @@
+---
+layout: layouts/base.njk
+title: Blog
+pagination:
+  data: devtalks
+  size: 3
+  alias: devtalks
+permalink: "blogs/page{{ pagination.pageNumber }}/"
+---
+
+
+
+<!-- Search Form -->
+<form id="searchForm">
+  <input type="text" id="searchInput" placeholder="Search..." />
+  <button type="submit">Search</button>
+</form>
+<br/>
+
+<!-- Category Filter -->
+<label for="category">Filter by category:</label>
+<select id="category" onchange="filterByCategory()">
+    <option value="all">All Categories</option>
+    <option value="Web Development">Web Development</option>
+    <option value="Development">Development</option>
+    <option value="Mobile Development">Mobile Development</option>
+</select>
+
+<h1>Blogs</h1>
+<ul id="devtalk-list">
+  {% for devtalk in devtalks %}
+    <li class="devtalk-item" data-category="{{ devtalk.category }}">
+      <h2>{{ devtalk.title }}</h2>
+      <p>{{ devtalk.description }}</p>
+      <a href="{{ devtalk.link }}">View Project</a>
+      <p>{{ devtalk.category }}</p>
+    </li>
+  {% endfor %}
+</ul>
+
+<nav>
+  <ul class="pagination">
+
+      {% if pagination.pageNumber > 0 %}
+        <li class="page-item">
+          <a class="page-link" href="{{ pagination.href.previous }}" aria-label="Previous">
+            Prev
+          </a>
+        </li>
+      {% endif %}
+
+      {%- for pageEntry in pagination.pages %}
+        <li class="page-item{% if pagination.pageNumber === loop.index0 %} active{% endif %}">
+          <a class="page-link" href="{{ pagination.hrefs[loop.index0] }}">
+            {{ loop.index }}
+          </a>
+        </li>
+      {%- endfor %}
+
+      {% if pagination.pageNumber < pagination.pages.length - 1 %}
+        <li class="page-item">
+          <a class="page-link" href="{{ pagination.href.next }}" aria-label="Next">
+            Next
+          </a>
+        </li>
+      {% endif %}
+
+  </ul>
+</nav>
+
+<script src="/assets/js/search.js"></script>

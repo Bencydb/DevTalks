@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nunjucks</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blogs/page0">Blogs</a></li>
+                <li><a href="/news">News</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+        <video class="bg-video" autoplay muted loop>
+            <source src="../../assets/images/bgvideo.mp4" type="video/mp4">
+        </video>
+    <main>
+     <div class="image-container">
+    <img src="../assets/images/article2.jpg" alt="Intro" title="Intro">
+</div>
+<h1>How to Set Up Nunjucks with ExpressJS</h1>
+<h2>Introduction</h2>
+<p>When building a web app without a dedicated front-end framework like ReactJS, Templating engines (e.g. Blade, Nunjucks) are incredibly useful.</p>
+<p>Though they aren't entirely necessary, they definitely help create more dynamic pages with cleaner HTML code.</p>
+<p>Before getting into JavaScript, Flask and Django were my preferred choices for building web applications. Coming from that background, I got very used to the Jinja2 engine.</p>
+<p>When I switched to using Express for web app development, I wanted a solution that would have similar syntax and features to Jinja2. Fortunately, Nunjucks is exactly that. This is a templating engine that is heavily inspired by Jinja2.</p>
+<p>In this article, I will walk you through the Nunjucks setup for ExpressJS. This is a fairly simple and straight-forward process.</p>
+<h2>Setup</h2>
+<p>First, create an empty folder. Navigate into the folder and run the following command to initialise npm:</p>
+<p><code>npm init</code></p>
+<p>Follow all the prompts to setup your project.</p>
+<p>Once the setup process has completed, you should have a package.json file in the root of your project.</p>
+<h2>Installing packages</h2>
+<p>Next, run the following command to install express and nunjucks.</p>
+<p><code>npm install express nunjucks</code></p>
+<p>Defining the entry point
+Now create the file that will be the entry point of our application. I name this file index.js and place it at the root of my project.</p>
+<p>The contents of index.js are as follows:</p>
+<p><code>const express = require('express')</code><br>
+<code>const nunjucks = require('nunjucks')</code><br>
+<code>var app = express()</code><br>
+<code>nunjucks.configure('views', {</code><br>
+<code>autoescape: true,</code><br>
+<code>express: app</code><br>
+<code>})</code></p>
+<p><code>app.set('view engine', 'html')</code><br>
+<code>const PORT = '8000'</code><br>
+<code>app.get('/', (req, res) =&gt; {</code><br>
+<code>res.render('home.html')</code><br>
+<code>})</code></p>
+<p><code>app.listen(PORT, () =&gt; {</code><br>
+<code>console.log(`Listening on port ${PORT}...`)</code><br>
+<code>})</code></p>
+<p>Let's take a moment to go through what's happening in this file:</p>
+<ul>
+<li>Require the express and nunjucks packages.</li>
+<li>Create an instance of express and assign it to a variable called 'app'.</li>
+<li>Configuring nunjucks: The first parameter is the path to the template folder. The second parameter is an object containing configuration options. Autoescape makes sure all output to templates are escaped before display (recommended). You can manually mark the output as safe. The express property requires an instance of an express app.</li>
+<li>Set the port number. We'll use this when starting the application later.</li>
+<li>Create a 'get' route at '/' and return a response that simply renders the template home.html.</li>
+<li>Listen for connections on the specified port.</li>
+</ul>
+<h2>Creating the templates</h2>
+<p>At the moment if you try to load the application, you'll get an error because we haven't created the template that we're trying to render yet.
+Remember that we set the path to templates as 'views'. Nunjucks will look for the 'views' folder in the same directory as the script that runs the configuration.
+If you have your template folder in another directory or have named it something different like 'templates', make sure you configure the path correctly.</p>
+<p>In this case, we have to create a folder called 'views' in the root of our project (because this is where index.js resides).
+Inside the views folder, create a base.html template. This is the template that will be inherited by other templates. It allows us to define certain UI elements, styles and scripts only once and have them displayed/imported on every template.
+This is where we'd define navigation bars and page footers.</p>
+<p>The contents of base.html are as follows:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;title&gt;Nunjucks&lt;/title&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    
+    &lt;script src=&quot;&quot; async defer&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+<p>We've defined a content block that will be overridden by the child templates. This is where the child templates will
+place their respective content.</p>
+<p>Next, create a home.html template that extends base.html and displays a simple header in the content block.</p>
+<div class="image-container">
+    <img src="../assets/images/article2-2.jpg" alt="Intro" title="Intro">
+</div>
+<p>Now that we've created the templates, we're able to load the home page. Visit localhost at the specified port and you
+should see that your app is up and running!</p>
+
+    </main>
+
+
+
+    <footer>
+        <p>&copy;  DevTalks</p>
+    </footer>
+</body>
+</html>
+
